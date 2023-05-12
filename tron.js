@@ -26,50 +26,58 @@ function startGame() {
 }
 
 // Draw game
+
+
+
 function draw() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
 
-    player.x += player.dx;
-    player.y += player.dy;
+  player.x += player.dx;
+  player.y += player.dy;
 
-    // Acceleration when close to wall
-    let distanceToWall;
-    switch (direction) {
-        case 'up': distanceToWall = player.y; break;
-        case 'down': distanceToWall = canvas.height - player.y; break;
-        case 'left': distanceToWall = player.x; break;
-        case 'right': distanceToWall = canvas.width - player.x; break;
-    }
-    if (distanceToWall < 100) {
-        player.speed = 50;
-    } else {
-        player.speed = 100;
-    }
+  // Acceleration when close to wall
+  let distanceToWall;
+  switch (direction) {
+      case 'up': distanceToWall = player.y; break;
+      case 'down': distanceToWall = canvas.height - player.y; break;
+      case 'left': distanceToWall = player.x; break;
+      case 'right': distanceToWall = canvas.width - player.x; break;
+  }
+  if (distanceToWall < 100) {
+      player.speed = 50;
+  } else {
+      player.speed = 100;
+  }
 
-    // Game over when player hits the edge
-    if (player.x < 0 || player.y < 0 || player.x > canvas.width || player.y > canvas.height) {
-        endGame();
-    }
+  // Game over when player hits the edge
+  if (player.x < 0 || player.y < 0 || player.x > canvas.width || player.y > canvas.height) {
+      endGame();
+  }
 
-    // Game over when player collides with trail
-    for (let i = 0; i < player.trail.length; i++) {
-        if (player.x === player.trail[i].x && player.y === player.trail[i].y) {
-            endGame();
-        }
-    }
+  // Game over when player collides with trail
+  for (let i = 0; i < player.trail.length; i++) {
+      if (player.x === player.trail[i].x && player.y === player.trail[i].y) {
+          endGame();
+      }
+      // Draw trail
+      context.fillStyle = '#00f'; // Change this to the color you want for the trail
+      context.fillRect(player.trail[i].x, player.trail[i].y, player.width, player.height);
+  }
 
-    // Add new position to trail
-    player.trail.push({x: player.x, y: player.y});
+  // Add new position to trail
+  player.trail.push({x: player.x, y: player.y});
 
-    // Draw player
-    context.fillStyle = player.color;
-    context.fillRect(player.x, player.y, player.width, player.height);
+  // Draw player
+  context.fillStyle = player.color;
+  context.fillRect(player.x, player.y, player.width, player.height);
 
-    // Limit trail length
-    while (player.trail.length > 100) {
-        player.trail.shift();
-    }
+  // Limit trail length
+  while (player.trail.length > 100) {
+      player.trail.shift();
+  }
 }
+
+
 
 // Update player direction
 window.addEventListener('keydown', function(e) {
