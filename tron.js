@@ -68,7 +68,7 @@ function updatePlayer(player, direction) {
     }
 
     // Game over when player hits the edge
-    if (player.x < 0 || player.y < 0 || player.x > canvas.width || player.y > canvas.height) {
+    if (player.x < 0 || player.y < 0 || player.x >= canvas.width || player.y >= canvas.height) {
         endGame(player);
     }
 
