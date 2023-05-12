@@ -69,7 +69,7 @@ function updatePlayer(player, direction) {
 
     // Game over when player hits the edge
     if (player.x < 0 || player.y < 0 || player.x > canvas.width || player.y > canvas.height) {
-        endGame();
+        endGame(player);
     }
 
     // Game over when player collides with their own trail or the other player's trail
@@ -77,7 +77,7 @@ function updatePlayer(player, direction) {
         let trail = players[j].trail;
         for (let i = 0; i < trail.length; i++) {
             if (player.x === trail[i].x && player.y === trail[i].y) {
-                endGame();
+                endGame(player);
             }
         }
     }
@@ -168,11 +168,24 @@ window.addEventListener('keydown', function(e) {
 });
 
 // End game
-function endGame() {
+function endGame(looser) {
     clearInterval(gameLoop);
     document.getElementById('start-game').style.display = 'block';
-    alert("Game Over!");
+
+    let message = "Game Over!";
+    if (looser) {
+        let playerIndex = players.indexOf(looser) + 1;
+        message += "\n Player " + playerIndex + " lost!";
+    }
+    alert(message);
 }
+
+
+window.addEventListener('keydown', function (e) {
+    if (e.key === ' ') {
+        startGame();
+    }
+});
 
 // Start game button
 document.getElementById('start-game').addEventListener('click', startGame);
