@@ -1,0 +1,33 @@
+body {
+    background-color: #000;
+    color: #FFF;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game-board {
+    border: 1px solid #0f0;
+    background-color: #000;
+}
+
+button#start-game {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 1.2em;
+    color: #0f0;
+    background-color: #000;
+    border: 1px solid #0f0;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+
+/* You'll need to add more CSS for the Tron bikes (players), their trails, and any other elements you add to your game. */
