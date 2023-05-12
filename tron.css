@@ -31,3 +31,29 @@ button#start-game {
 }
 
 /* You'll need to add more CSS for the Tron bikes (players), their trails, and any other elements you add to your game. */
+
+.color-info {
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.color-info span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+}
+
+.player-1-color {
+    background-color: #0f0; /* Player 1 color */
+}
+
+.player-2-color {
+    background-color: #f00; /* Player 2 color */
+}
+
+
